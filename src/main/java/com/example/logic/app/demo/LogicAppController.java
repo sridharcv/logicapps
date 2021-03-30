@@ -14,13 +14,13 @@ public class LogicAppController {
 	public String entryPoint() {
 		System.out.println("in the host");
 		
-		return null;
+		return "hello";
 	}
 	
 	@GetMapping("/entryPoint")
 	public String getentryPoint() {
 		System.out.println("in the host");
-		return null;
+		return "getmethod";
 	}
 
 }
