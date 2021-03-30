@@ -14,7 +14,7 @@ public class LogicAppController {
 	private  static String url="none";
 	
 	@PostMapping("/entryPoint")
-	public String entryPoint(@RequestParam(name = "id") String url) {
+	public String entryPoint(@RequestParam(name = "callBackUrl") String url) {
 		System.out.println("in the host");
 		this.url=url;
 		return "hello";
