@@ -3,6 +3,7 @@ package com.example.logic.app.demo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -10,17 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class LogicAppController {
 	
 	
+	private  static String url="none";
+	
 	@PostMapping("/entryPoint")
-	public String entryPoint() {
+	public String entryPoint(@RequestParam(name = "id") String url) {
 		System.out.println("in the host");
-		
+		this.url=url;
 		return "hello";
 	}
 	
 	@GetMapping("/entryPoint")
 	public String getentryPoint() {
 		System.out.println("in the host");
-		return "getmethod";
+		return url;
 	}
 
 }
