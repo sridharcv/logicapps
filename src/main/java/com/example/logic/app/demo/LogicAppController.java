@@ -16,9 +16,9 @@ public class LogicAppController {
 	
 	int count =0;
 	@PostMapping("/entryPoint")
-	public String entryPoint(@RequestBody TestMethod callBackUrl) {
+	public String entryPoint(@RequestBody String callBackUrl) {
 		System.out.println("in the host");
-		LogicAppController.url=callBackUrl.getUrl();
+		LogicAppController.url=callBackUrl;
 		return "hello";
 	}
 	
