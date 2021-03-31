@@ -14,6 +14,7 @@ public class LogicAppController {
 	
 	private String url="none1";
 	
+	int count =0;
 	@PostMapping("/entryPoint")
 	public String entryPoint(@RequestBody TestMethod callBackUrl) {
 		System.out.println("in the host");
@@ -23,8 +24,9 @@ public class LogicAppController {
 	
 	@GetMapping("/entryPoint")
 	public String getentryPoint() {
+		count++;
 		System.out.println("in the host");
-		return this.url;
+		return "test"+count+this.url;
 	}
 
 }
