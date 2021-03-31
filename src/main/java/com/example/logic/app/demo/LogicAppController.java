@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class LogicAppController {
 	
 	
-	private String url="none1";
+	private static String url="none1";
 	
 	int count =0;
 	@PostMapping("/entryPoint")
 	public String entryPoint(@RequestBody TestMethod callBackUrl) {
 		System.out.println("in the host");
-		this.url=callBackUrl.getUrl();
+		LogicAppController.url=callBackUrl.getUrl();
 		return "hello";
 	}
 	
@@ -26,7 +26,7 @@ public class LogicAppController {
 	public String getentryPoint() {
 		count++;
 		System.out.println("in the host");
-		return "test"+count+this.url;
+		return "test"+count+LogicAppController.url;
 	}
 
 }
