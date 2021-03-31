@@ -2,7 +2,7 @@ package com.example.logic.app.demo;
 
 public class TestMethod {
 
-	private String callBackUrl;
+	String callBackUrl;
 
 	public  String getUrl() {
 		return callBackUrl;
