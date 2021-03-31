@@ -9,6 +9,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +29,7 @@ public class LogicAppController {
 	@PostMapping("/entryPoint")
 	public String entryPoint(@RequestBody TestMethod test) {
 		System.out.println("in the host");
-		LogicAppController.url=test.getCallBackUrl();
+	    url=test.getCallBackUrl();
 		return "hello";
 	}
 	
@@ -36,19 +37,15 @@ public class LogicAppController {
 	public String getentryPoint() {
 		count++;
 		System.out.println("in the host");
-		Map<String, Object> map = new HashMap<>();
-		map.put("userId", 1);
-		HttpHeaders headers = new HttpHeaders();
-	    headers.setContentType(MediaType.APPLICATION_JSON);
-	    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-	    HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
+
 		RestTemplate restTemplate = new RestTemplate();
 		String temp="";
 		try {
-
-		restTemplate.postForEntity(LogicAppController.url.trim(), entity, String.class);
+			HttpHeaders headers = new HttpHeaders();
+			HttpEntity<String> request = new HttpEntity<>("test", headers);
+			ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, request, String.class);
 		}catch(Exception e) {
-			temp = LogicAppController.url+ " ----->end of url:"+ e.getMessage();
+			temp = url+ " ----->end of url:"+ e.getMessage();
 		}
 		return "test"+count+temp;
 	}
