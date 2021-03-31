@@ -2,14 +2,14 @@ package com.example.logic.app.demo;
 
 public class TestMethod {
 
-	private static String callBackUrl;
+	private String callBackUrl;
 
-	public static String getUrl() {
+	public  String getUrl() {
 		return callBackUrl;
 	}
 
-	public static void setUrl(String callBackUrl) {
-		TestMethod.callBackUrl = callBackUrl;
+	public void setUrl(String callBackUrl) {
+		this.callBackUrl = callBackUrl;
 	}
 	
 }
