@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LogicAppController {
 	
 	
-	private  static String url="none1";
+	private String url="none1";
 	
 	@PostMapping("/entryPoint")
 	public String entryPoint(@RequestBody TestMethod callBackUrl) {
@@ -24,7 +24,7 @@ public class LogicAppController {
 	@GetMapping("/entryPoint")
 	public String getentryPoint() {
 		System.out.println("in the host");
-		return url;
+		return this.url;
 	}
 
 }
