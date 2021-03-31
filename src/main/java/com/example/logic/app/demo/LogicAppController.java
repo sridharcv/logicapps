@@ -1,11 +1,15 @@
 package com.example.logic.app.demo;
 
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -26,6 +30,11 @@ public class LogicAppController {
 	public String getentryPoint() {
 		count++;
 		System.out.println("in the host");
+		HttpEntity<TestMethod> request = new HttpEntity<>(new TestMethod());
+		RestTemplate restTemplate = new RestTemplate();
+		if(!url.equalsIgnoreCase("none1")) {
+		restTemplate.exchange(LogicAppController.url, HttpMethod.POST, request, TestMethod.class);
+		}
 		return "test"+count+LogicAppController.url;
 	}
 
