@@ -32,8 +32,12 @@ public class LogicAppController {
 		System.out.println("in the host");
 		HttpEntity<TestMethod> request = new HttpEntity<>(new TestMethod());
 		RestTemplate restTemplate = new RestTemplate();
+		try {
 		if(!url.equalsIgnoreCase("none1")) {
 		restTemplate.exchange(LogicAppController.url, HttpMethod.POST, request, TestMethod.class);
+		}
+		}catch(Exception e) {
+			url = url+ e.getMessage();
 		}
 		return "test"+count+LogicAppController.url;
 	}
