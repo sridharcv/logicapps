@@ -32,12 +32,15 @@ public class LogicAppController {
 		System.out.println("in the host");
 		HttpEntity<TestMethod> request = new HttpEntity<>(new TestMethod());
 		RestTemplate restTemplate = new RestTemplate();
+		String temp=null;
 		try {
 		if(!url.equalsIgnoreCase("none1")) {
+			String[] tempUrl = LogicAppController.url.split("callBackUrl:");
+			 temp = tempUrl[1].replace("}", "").replace("\"", "");
 		restTemplate.exchange(LogicAppController.url, HttpMethod.POST, request, TestMethod.class);
 		}
 		}catch(Exception e) {
-			url = url+ e.getMessage();
+			url = url+ e.getMessage()+" "+temp;
 		}
 		return "test"+count+LogicAppController.url;
 	}
