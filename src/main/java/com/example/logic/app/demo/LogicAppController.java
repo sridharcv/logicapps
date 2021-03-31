@@ -1,8 +1,14 @@
 package com.example.logic.app.demo;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,12 +36,17 @@ public class LogicAppController {
 	public String getentryPoint() {
 		count++;
 		System.out.println("in the host");
-		HttpEntity<TestMethod> request = new HttpEntity<>(new TestMethod());
+		Map<String, Object> map = new HashMap<>();
+		map.put("userId", 1);
+		HttpHeaders headers = new HttpHeaders();
+	    headers.setContentType(MediaType.APPLICATION_JSON);
+	    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+	    HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
 		RestTemplate restTemplate = new RestTemplate();
 		String temp=null;
 		try {
 
-		restTemplate.exchange(LogicAppController.url, HttpMethod.POST, request, TestMethod.class);
+		restTemplate.postForEntity(LogicAppController.url, entity, String.class);
 		}catch(Exception e) {
 			url = url+ e.getMessage()+" "+temp;
 		}
