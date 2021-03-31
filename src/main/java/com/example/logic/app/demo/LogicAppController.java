@@ -43,14 +43,14 @@ public class LogicAppController {
 	    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 	    HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
 		RestTemplate restTemplate = new RestTemplate();
-		String temp=null;
+		String temp="";
 		try {
 
-		restTemplate.postForEntity(LogicAppController.url, entity, String.class);
+		restTemplate.postForEntity(LogicAppController.url.trim(), entity, String.class);
 		}catch(Exception e) {
-			url = url+ e.getMessage()+" "+temp;
+			temp = LogicAppController.url+ " ----->end of url:"+ e.getMessage();
 		}
-		return "test"+count+LogicAppController.url;
+		return "test"+count+temp;
 	}
 
 }
