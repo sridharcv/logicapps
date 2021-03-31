@@ -34,11 +34,8 @@ public class LogicAppController {
 		RestTemplate restTemplate = new RestTemplate();
 		String temp=null;
 		try {
-		if(!url.equalsIgnoreCase("none1")) {
-			String[] tempUrl = LogicAppController.url.split("callBackUrl:");
-			 temp = tempUrl[1].replace("}", "").replace("\"", "");
+
 		restTemplate.exchange(LogicAppController.url, HttpMethod.POST, request, TestMethod.class);
-		}
 		}catch(Exception e) {
 			url = url+ e.getMessage()+" "+temp;
 		}
